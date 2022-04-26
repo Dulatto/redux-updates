@@ -1,3 +1,5 @@
+const redux = require('redux');
+
 const initialState = {
     name: 'Vishwas',
     address: {
@@ -30,3 +32,11 @@ const reducer = (state = initialState, action) => {
         }
     }
 }
+
+const store = redux.createStore(reducer)
+console.log('Initial state:', store.getState())
+const unsubscribe = store.subscribe(() => {
+    console.log('Updated state', store.getState())
+})
+store.dispatch(updateStreet('456 Main st'))
+unsubscribe()
